@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Subject, Observable} from 'rxjs';
-import {WebcamImage, WebcamInitError, WebcamUtil} from 'ngx-webcam';
+import {WebcamImage} from 'ngx-webcam';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +7,16 @@ import {WebcamImage, WebcamInitError, WebcamUtil} from 'ngx-webcam';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  // toggle webcam on/off
+
+  public showCamera = true;
+  public images = [];
+  public ngOnInit(): void {};
+
+  onPhotoShot(image: WebcamImage): void {
+    this.showCamera = false;
+    this.images.push(image);
+  }
+ /*  // toggle webcam on/off
   public showWebcam = true;
   public allowCameraSwitch = true;
   public multipleWebcamsAvailable = false;
@@ -32,6 +40,7 @@ export class AppComponent implements OnInit {
       .then((mediaDevices: MediaDeviceInfo[]) => {
         this.multipleWebcamsAvailable = mediaDevices && mediaDevices.length > 1;
       });
+      this.showNextWebcam('40eacced94b9aeb3dc88d6d30f7a9fa4e7b1c050dd3da385dacfea29e3da1ca8');
   }
 
   public triggerSnapshot(): void {
@@ -69,5 +78,5 @@ export class AppComponent implements OnInit {
 
   public get nextWebcamObservable(): Observable<boolean|string> {
     return this.nextWebcam.asObservable();
-  }
+  } */
 }

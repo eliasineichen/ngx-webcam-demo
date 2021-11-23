@@ -1,0 +1,14 @@
+<p>camera works!</p>
+
+<div *ngIf="showWebcam">
+    <webcam [trigger]="triggerObservable" [allowCameraSwitch]="allowCameraSwitch" (imageCapture)="handleImage($event)"></webcam>
+</div>
+
+<button *ngIf="!webcamImage" (click)="triggerSnapshot();">Take A Snapshot</button>
+
+<div *ngIf="webcamImage">
+    <img [src]="webcamImage.imageAsDataUrl"/>
+</div>
+
+<button *ngIf="webcamImage" (click)="save();">Foto verwenden</button>
+<button *ngIf="webcamImage"  (click)="retry();">Neues Foto aufnehmen</button>

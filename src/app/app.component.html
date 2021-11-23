@@ -1,4 +1,4 @@
-<div style="text-align:center">
+<!--<div>
   <h1>
     Ngx-Webcam Demo
   </h1>
@@ -13,7 +13,6 @@
     ></webcam>
     <br/>
     <button class="actionBtn" (click)="triggerSnapshot();">Take A Snapshot</button>
-    <button class="actionBtn" (click)="toggleWebcam();">Toggle Webcam</button>
     <br/>
     <button class="actionBtn" (click)="showNextWebcam(true);" [disabled]="!multipleWebcamsAvailable">Next Webcam</button>
     <input id="cameraSwitchCheckbox" type="checkbox" [(ngModel)]="allowCameraSwitch"><label for="cameraSwitchCheckbox">Allow Camera Switch</label>
@@ -31,12 +30,8 @@
 <h4 *ngIf="errors.length > 0">Messages:</h4>
 <ul *ngFor="let error of errors">
   <li>{{error | json}}</li>
-</ul>
+</ul>-->
 
-<h2>Like this project on GitHub:</h2>
-<ul class="links">
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/basst314/ngx-webcam">Ngx-Webcam / GitHub</a></h2>
-  </li>
-</ul>
+<camera *ngIf="showCamera" (shot)="onPhotoShot($event)"></camera>
 
+<img *ngFor="let image of images" [src]="image.imageAsDataUrl">
